@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" /> 
+        <script defer src="js/pyscript.js"></script>
+        <script type="text/javascripy" src="./js/country.js"></script>
+        <py-env>
+          - paths:
+            - ./utils.py
+            - ./customerManagement.py
+            - ./data.json
+        </py-env>            
+        <title>Customer Management</title>
+    </head>
+    <body> 
+      <py-script src="./customerManagement.py"></py-script>
+        <header>
+            
+        </header>
+        <div class="container">
+            <button class="tablink" onclick="openPage('Contacts', this, '#2D2D2D')"  title="Show all customers on database">
+                Contacts
+            </button>
+            <button class="tablink" onclick="openPage('Details', this, '#FB5139')" title="Show customer details" id="details">
+                Details
+            </button>
+            <button class="tablink" onclick="openPage('Manage', this, '#311362')" title="Create, Update or Delete contact" id="defaultOpen">
+                Manage
+            </button>
+            <button class="tablink" onclick="openPage('Weather', this, 'orange');" title="Show weather conditions in customer's location" class="weather">
+                Weather
+            </button>
+            <div id="Contacts" class="tabcontent">
+              <input type="text" id="myInput" onclick="document.getElementById('Contacts').click();" onkeyup="searchEngine()" placeholder="Search" title="Type in a name">
+                <h3>Customers List</h3>
+                <ul id="myUL">                                                                                                                
+                </ul>
+            </div> 
+
+            <div id="Details" class="tabcontent">
+                <h3>Details</h3>
+                <div id="Information">
+                    <div id="basicInfo">
+                        <table style="width:100%">
+                            <tr>
+                              <th colspan="2">Customer Information</th>
+                            </tr>
+                            <tr>
+                              <td>First Name<br/><input type="text" id="first_name"></td>
+                              <td>Last Name<br/><input type="text" id="last_name"></td>
+                            </tr>
+                            <tr>
+                              <td>Birthday<br/><input type="date" id="birthDay"></td>
+                              <td>Telephone<br/><input type="tel" id="phone"></td>
+                            </tr>
+                            <tr>
+                              <td>Email<br/><input type="email" id="email"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">Job Information</th>
+                              </tr>
+                              <tr>
+                                <td>Company<br/><input type="text" id="company"></td>
+                                <td>Title<br/><input type="text" id="title"></td>
+                              </tr>  
+                              <tr>
+                                <th colspan="2">Billing Address</th>
+                              </tr>
+                              <tr>
+                                <td>Country<br/><input type="text" id="country"></td>
+                                <td>State<br/><input type="text" id="state"></td>
+                              </tr>
+                              <tr>
+                                <td>City<br/><input type="text" id="city"></td>
+                                <td>Street<br/><textarea id="street"></textarea></td>                                 
+                              </tr>  
+                              <tr>
+                                <td>Exterior Number<br/><input type="number" id="houseExt"></td>
+                                <td>Interior Number<br/><input type="number" id="houseInt"></td>                                 
+                              </tr>    
+                              <tr>
+                                <td>Suburb<br/><input type="text" id="suburb"></td>
+                                <td>Postal Code<br/><input type="text" id="postalCode"></td>
+                              </tr>                                                 
+                          </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Manage" class="tabcontent">
+                <h3>Manage</h3>
+                <div class="actions">
+                  <py-button id="create" label="💾 Save" title="Create new contact">
+def on_click(evt):
+  getData()
+                  </py-button>                  
+                  <py-button id="update" label="🔃Update" title="Update contact">
+print("Update")
+                  </py-button>  
+                  <py-button id="delete" label="❌Delete" title="Delete contact">
+print("Delete") 
+                  </py-button>                    
+                </div>
+                <div id="basicInfo">
+                    <table style="width:100%">
+                        <tr>
+                          <th colspan="2">Basic Information</th>
+                        </tr>
+                        <tr>
+                          <td>First Name<br/><input type="text" id="first_name" required></td>
+                          <td>Last Name<br/><input type="text" id="last_name" required></td>
+                        </tr>
+                        <tr>
+                          <td>Birthday<br/><input type="date" id="birthDay" required></td>
+                          <td>Telephone<br/><input type="tel" id="phone" required></td>
+                        </tr>
+                        <tr>
+                            <td>Email<br/><input type="email" id="email" required></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Job Information</th>
+                          </tr>
+                          <tr>
+                            <td>Company<br/><input type="text" id="company" required></td>
+                            <td>Title<br/><input type="text" id="title" required></td>
+                          </tr>  
+                          <tr>
+                            <th colspan="2">Billing Address</th>
+                          </tr>
+                          <tr>
+                            <td>Country<br/>
+                              <div class="select">
+                                <select name="format" id="countrySelect">
+                                   <option selected disabled>Select the customer's country</option>
+                                </select>
+                             </div>
+                            </td>
+                            <td>State<br/><input type="text" id="state" required></td>
+                          </tr>
+                          <tr>
+                            <td>City<br/><input type="text" id="city" required></td>
+                            <td>Street<br/><textarea id="street"></textarea></td>                                
+                          </tr>  
+                          <tr>
+                              <td>Exterior Number<br/><input type="number" id="houseExt" required></td>
+                              <td>Interior Number<br/><input type="number" id="houseInt"></td>
+                          </tr>    
+                          <tr>
+                            <td>Suburb<br/><input type="text" id="suburb" required></td>
+                            <td>Postal Code<br/><input type="text" id="postalCode" required></td>
+                          </tr>                                                 
+                      </table>
+                </div>
+                <div class="actions">
+                  <py-button id="create2" label="💾 Save" title="Create new contact">
+def on_click(evt):
+  create_contact()
+                  </py-button>                  
+                  <py-button id="update2" label="🔃Update" title="Update contact">
+print("Update")
+                  </py-button>  
+                  <py-button id="delete2" label="❌Delete" title="Delete contact">
+print("Delete") 
+                  </py-button>                    
+                </div>
+            </div>
+
+            <div id="Weather" class="tabcontent">
+                <h3>Weather</h3> 
+                <div class="grid-container">
+                  <div class="grid-item item1">
+                    <img src="./images/icons/c03d.png" alt="Icono del tipo de clima">
+                  </div>
+                  <div class="grid-item item2">
+                    <span>Nearest Sensor</span>
+                    <p id="city_name">city_name</p>
+                  </div>
+                  <div class="grid-item item3">
+                    <span>Condition</span>
+                    <p id="description">Overcast clouds</p>
+                    <span>Latitud y longitud del sensor</span>
+                    <p>lat long</p>
+                  </div>
+                  <div class="grid-item item4">
+                    <span>Temperature</span>
+                    <p id="temp">18.7°C</p>
+                  </div>
+                  <div class="grid-item item5">
+                    <span>Sunrise</span>
+                    <p id="sunrise">12:52</p>
+                    <span>Sunset</span>
+                    <p id="sunset">00:21</p>
+                  </div>
+                  <div class="grid-item item6">
+                    <span>Wind speed</span>
+                    <p id="wind_spd">1.1068416</p>
+                    <span>Wind direction</span>
+                    <p id="wind_cdir_full">north-northwest</p>
+                  </div>
+                </div>            
+            </div>
+
+            <!---data
+              *Logo
+              *Sensor más cercano: city_name
+              *Temp del sensor: temp
+              direccion del viento: wind_cdir_full
+              velocidad del viento: wind_spd
+              *Latitud y longitud del sensor: lat
+              *amanecer: sunrise
+              *atardecer: sunset
+              
+              
+              data weather
+              *tipo de clima: description
+              *Logo: icon
+            -->
+            <p>Python Code Execution Status:</p>
+            <textarea id="out"></textarea>
+            <script type="text/javascript" src="./js/tabController.js"></script> 
+            <script type="text/javascript" src="./js/country.js"></script> 
+            <script> document.getElementById("defaultOpen").click();</script>
+  </body>
+</html>

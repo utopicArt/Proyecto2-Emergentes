@@ -1,0 +1,120 @@
+{
+    "customer": [
+        {
+            "client": [
+                {
+                    "Contact_Information": {
+                        "first_name": "asd",
+                        "last_name": "asd asd",
+                        "birthDay": "25",
+                        "birthMonth": "10",
+                        "birthYear": "2023",
+                        "phone": "33123456",
+                        "email": "a@a.com"
+                    },
+                    "Job_Information": {
+                        "company": "asd",
+                        "title": "asd"
+                    },
+                    "Billing_Information": {
+                        "street": "asd",
+                        "houseExt": "1234",
+                        "houseInt": "asd",
+                        "suburb": "asd",
+                        "city": "asd",
+                        "state": "asd",
+                        "country": "MX",
+                        "postalCode": "45018"
+                    }
+                }
+            ]
+        },
+        {
+            "client": [
+                {
+                    "Contact_Information": {
+                        "first_name": "bsdkl",
+                        "last_name": "jlk jkljkljkl",
+                        "birthDay": "26",
+                        "birthMonth": "10",
+                        "birthYear": "2023",
+                        "phone": "33223456",
+                        "email": "b@b.com"
+                    },
+                    "Job_Information": {
+                        "company": "jkljkl",
+                        "title": "jkljkl"
+                    },
+                    "Billing_Information": {
+                        "street": "jkljkl",
+                        "houseExt": "1234",
+                        "houseInt": "jkljkl",
+                        "suburb": "jkljkl",
+                        "city": "jkljkl",
+                        "state": "jkljkl",
+                        "country": "MX",
+                        "postalCode": "45018"
+                    }
+                }
+            ]
+        },
+        {
+            "client": [
+                {
+                    "Contact_Information": {
+                        "first_name": "csdjkl",
+                        "last_name": "jlk jkljkljkl",
+                        "birthDay": "27",
+                        "birthMonth": "10",
+                        "birthYear": "2023",
+                        "phone": "33323456",
+                        "email": "c@c.com"
+                    },
+                    "Job_Information": {
+                        "company": "jkljkl",
+                        "title": "jkljkl"
+                    },
+                    "Billing_Information": {
+                        "street": "jkljkl",
+                        "houseExt": "1234",
+                        "houseInt": "jkljkl",
+                        "suburb": "jkljkl",
+                        "city": "jkljkl",
+                        "state": "jkljkl",
+                        "country": "MX",
+                        "postalCode": "45018"
+                    }
+                }
+            ]
+        },
+        {
+            "client": [
+                {
+                    "Contact_Information": {
+                        "first_name": "dsdjkl",
+                        "last_name": "jlk jkljkljkl",
+                        "birthDay": "28",
+                        "birthMonth": "10",
+                        "birthYear": "2023",
+                        "phone": "33423456",
+                        "email": "d@d.com"
+                    },
+                    "Job_Information": {
+                        "company": "jkljkl",
+                        "title": "jkljkl"
+                    },
+                    "Billing_Information": {
+                        "street": "jkljkl",
+                        "houseExt": "1234",
+                        "houseInt": "jkljkl",
+                        "suburb": "jkljkl",
+                        "city": "jkljkl",
+                        "state": "jkljkl",
+                        "country": "MX",
+                        "postalCode": "45018"
+                    }
+                }
+            ]
+        }
+    ]
+}
