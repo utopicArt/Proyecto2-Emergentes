@@ -5,9 +5,10 @@ import os
 
 out = document.getElementById("out")
 out.innerHTML += "⏳Loading Python code..."
-isLoaded = False
-ultimo_div = document.getElementById("basicInfo")
 
+
+#Funcion rear un nuevo json en caso de que no haya ninguno
+#Tiene que ejecutarse de manera manual invocando el método
 def createNewFile():
     newFile = False
     try:
@@ -19,33 +20,55 @@ def createNewFile():
         newFile = True
         out.innerHTML += "❌Fail to create file"
 
-def getInputData(id):
-    data = document.querySelectorAll('#' + id)
-    if data[1].value is not None:
-        out.innerHTML += f"\\\nSe obtuvo: {data[1].value}" 
-    return data
 
+#Funcion que obtiene el texto que se ingresa en los input de la pestaña management
+def getInputData(id):
+    #se utiliza querySelectorAll porque hay duplicidad de id en los input en las pestañas
+    #data[0] = inputs de pestaña 'Details'. data[1] = inputs de pestaña 'Management'
+    data = document.querySelectorAll('#' + id)
+
+    dataUserInput = ""
+    if data[1].value is not None:
+        dataUserInput = data[1].value
+        out.innerHTML += f"\\\n🛈 {id}: {dataUserInput}"
+    else:
+        dataUserInput = ""
+    return str(str(dataUserInput))
+
+
+#Funcion que obtiene el pais seleccionado
 def getSelCountry(id):
     selectElement = document.getElementById(id)
-    selText = selectElement.options[selectElement.selectedIndex].text
-    out.innerHTML += 'Pais seleccionado: ' + selText
-    return selText
 
+    if selectElement.value == "None":
+        selText = "MX"
+    else:
+        selText = str(selectElement.value)
+        
+    out.innerHTML += f"\\\nSe obtuvo: {selText}"
+    return selText 
+
+
+#Funcion que guarda los datos
 def setData():
-    out.innerHTML += "\\\Saving Data...\\\n"
+    error = False
+    errorMessage = ""
     userData = {}
     userData['client'] = []
+
+    out.innerHTML += "\\\n🔄Saving Data...\\\n"
+
     userData['client'].append({
             'Contact_Information': {
                 'first_name': getInputData("first_name"),
                 'last_name': getInputData("last_name"),
-                'birthdDay' : getInputData("birthDay"),
+                'birth': getInputData("birth"),
                 'phone': getInputData("phone"),
-                'email': getInputData("email"),
+                'email': getInputData("email")
             },
             'Job_Information': {
-                'company': getInputData("company"),
-                'title': getInputData("title")
+                "company": getInputData("company"),
+                "title": getInputData("title")
             },
             'Billing_Information': {
                 'country': getSelCountry("countrySelect"),
@@ -58,43 +81,38 @@ def setData():
                 'postalCode': getInputData("postalCode")
             }
         })
-    #with open('data.json', 'r+') as file:
-    #    #json.dump(userData, file, indent=4)
-    #    fileData = json.load(file)
-    #    fileData["customer"].append(userData)
-    #    file.seek(0)
-    #    json.dump(fileData, file, indent=4)        
-    out.innerHTML += f"\\\n✔️Client saved successfully: {userData}"
 
+    out.innerHTML += '\\\nJSON: ' + str(userData)
+    
+    try:
+        with open('data.json', 'r+') as file:
+            fileData = json.load(file)
+            fileData["customer"].append(userData)
+            file.seek(0)
+            json.dump(fileData, file, indent=4)
+    except Exception as e:
+        error = True
+        errorMessage = e
+
+    out.innerHTML += '\\\n' + (f'❌Fail to save: {errorMessage}' if error else '✅Client saved successfully')
+
+
+#Funcion que muestra el cliente seleccionado de 'Contacts' y
+#los muestra en 'Details'.
+# userName = str de nombre completo
+#userData = objeto que contiene toda la info del cliente empaquetada
 def getDetails(userName, userData):
     out.innerHTML += f"\\\n👉Customer selected: {userName}"
 
     for category in userData:
-        for val in category:
-            #document.getElementById(f"{attr}").innerHTML = val
-            detInput = document.getElementById(val)
-            if val == 'birthDay' or val == 'birthMonth' or val == 'birthYear':
-                birthDayInput = document.getElementById("birthDay")
-                birtDayDate = category['birthDay'] + "-" + category['birthMonth'] + "-" + category['birthYear']
-            if detInput:
-                out.innerHTML += f"\nEl input {val} es correcto"
-            else:
-                out.innerHTML += f"\nError al encontrar el input {val}"
-
-            #detInput.innerText = category[val]
-
-            out.innerHTML += f"\n{val}: {category[val]}"
+        for id in category:
+            toField = document.querySelectorAll('#' + id)[0]
+            toField.value = category[id]
+            #out.innerHTML += f"\n{val}: {category[val]}"
     document.getElementById("details").click()
 
 
-
-def create_contact(*ags, **kws):
-    out.innerHTML += "\\\n🛈 Verificando archivo de base de datos...\\\n"
-    setData()
-    #createNewFile()
-    #out.innerHTML += "<p>Obteniendo entrada del usuario...</p>"
-    #setData()
-
+#Funcion que obtiene todos los clientes de la BD
 def getContactsName():
     ul = document.getElementById('myUL')
     with open('data.json') as file:
@@ -104,7 +122,7 @@ def getContactsName():
             for client in clients['client']:
                 contact = client['Contact_Information']
                 job = client['Job_Information']
-                billing = client['Billing_Information']
+                billing = client['Billing_Information'] 
 
                 name = f'{contact["first_name"]} {contact["last_name"]}'
                 out.innerHTML += '\\\nContact found: ' + name
