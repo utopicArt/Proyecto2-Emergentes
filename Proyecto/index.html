@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/style.css" /> 
         <script defer src="js/pyscript.js"></script>
-        <script type="text/javascripy" src="./js/country.js"></script>
+        <script type="text/javascript" src="./js/country.js"></script>
         <py-env>
           - paths:
             - ./utils.py
@@ -27,7 +27,7 @@
             <button class="tablink" onclick="openPage('Details', this, '#FB5139')" title="Show customer details" id="details">
                 Details
             </button>
-            <button class="tablink" onclick="openPage('Manage', this, '#311362')" title="Create, Update or Delete contact" id="defaultOpen">
+            <button class="tablink" onclick="openPage('Manage', this, '#311362')" title="Create, Update or Delete contact"  id="defaultOpen">
                 Manage
             </button>
             <button class="tablink" onclick="openPage('Weather', this, 'orange');" title="Show weather conditions in customer's location" class="weather">
@@ -49,41 +49,41 @@
                               <th colspan="2">Customer Information</th>
                             </tr>
                             <tr>
-                              <td>First Name<br/><input type="text" id="first_name"></td>
-                              <td>Last Name<br/><input type="text" id="last_name"></td>
+                              <td>First Name<br/><input type="text" id="first_name" disabled></td>
+                              <td>Last Name<br/><input type="text" id="last_name" disabled></td>
                             </tr>
                             <tr>
-                              <td>Birthday<br/><input type="date" id="birthDay"></td>
-                              <td>Telephone<br/><input type="tel" id="phone"></td>
+                              <td>Birthday<br/><input type="date" id="birth" disabled></td>
+                              <td>Telephone<br/><input type="tel" id="phone" disabled></td>
                             </tr>
                             <tr>
-                              <td>Email<br/><input type="email" id="email"></td>
+                              <td>Email<br/><input type="email" id="email" disabled></td>
                             </tr>
                             <tr>
                                 <th colspan="2">Job Information</th>
                               </tr>
                               <tr>
-                                <td>Company<br/><input type="text" id="company"></td>
-                                <td>Title<br/><input type="text" id="title"></td>
+                                <td>Company<br/><input type="text" id="company" disabled></td>
+                                <td>Title<br/><input type="text" id="title" disabled></td>
                               </tr>  
                               <tr>
                                 <th colspan="2">Billing Address</th>
                               </tr>
                               <tr>
-                                <td>Country<br/><input type="text" id="country"></td>
-                                <td>State<br/><input type="text" id="state"></td>
+                                <td>Country<br/><input type="text" id="country" disabled></td>
+                                <td>State<br/><input type="text" id="state" disabled></td>
                               </tr>
                               <tr>
-                                <td>City<br/><input type="text" id="city"></td>
-                                <td>Street<br/><textarea id="street"></textarea></td>                                 
+                                <td>City<br/><input type="text" id="city" disabled></td>
+                                <td>Street<br/><textarea id="street" disabled></textarea></td>                                 
                               </tr>  
                               <tr>
-                                <td>Exterior Number<br/><input type="number" id="houseExt"></td>
-                                <td>Interior Number<br/><input type="number" id="houseInt"></td>                                 
+                                <td>Exterior Number<br/><input type="number" id="houseExt" disabled></td>
+                                <td>Interior Number<br/><input type="number" id="houseInt" disabled></td>                                 
                               </tr>    
                               <tr>
-                                <td>Suburb<br/><input type="text" id="suburb"></td>
-                                <td>Postal Code<br/><input type="text" id="postalCode"></td>
+                                <td>Suburb<br/><input type="text" id="suburb" disabled></td>
+                                <td>Postal Code<br/><input type="text" id="postalCode" disabled></td>
                               </tr>                                                 
                           </table>
                     </div>
@@ -95,7 +95,7 @@
                 <div class="actions">
                   <py-button id="create" label="💾 Save" title="Create new contact">
 def on_click(evt):
-  getData()
+  setData()
                   </py-button>                  
                   <py-button id="update" label="🔃Update" title="Update contact">
 print("Update")
@@ -110,22 +110,22 @@ print("Delete")
                           <th colspan="2">Basic Information</th>
                         </tr>
                         <tr>
-                          <td>First Name<br/><input type="text" id="first_name" required></td>
-                          <td>Last Name<br/><input type="text" id="last_name" required></td>
+                          <td>First Name<br/><input type="text" id="first_name"></td>
+                          <td>Last Name<br/><input type="text" id="last_name"></td>
                         </tr>
                         <tr>
-                          <td>Birthday<br/><input type="date" id="birthDay" required></td>
-                          <td>Telephone<br/><input type="tel" id="phone" required></td>
+                          <td>Birthday<br/><input type="date" id="birth"></td>
+                          <td>Telephone<br/><input type="tel" id="phone"></td>
                         </tr>
                         <tr>
-                            <td>Email<br/><input type="email" id="email" required></td>
+                            <td>Email<br/><input type="email" id="email"></td>
                         </tr>
                         <tr>
                             <th colspan="2">Job Information</th>
                           </tr>
                           <tr>
-                            <td>Company<br/><input type="text" id="company" required></td>
-                            <td>Title<br/><input type="text" id="title" required></td>
+                            <td>Company<br/><input type="text" id="company"></td>
+                            <td>Title<br/><input type="text" id="title"></td>
                           </tr>  
                           <tr>
                             <th colspan="2">Billing Address</th>
@@ -133,31 +133,31 @@ print("Delete")
                           <tr>
                             <td>Country<br/>
                               <div class="select">
-                                <select name="format" id="countrySelect">
-                                   <option selected disabled>Select the customer's country</option>
+                                <select id="countrySelect">
+                                   <option value="None" selected disabled>Select the customer's country</option>
                                 </select>
                              </div>
                             </td>
-                            <td>State<br/><input type="text" id="state" required></td>
+                            <td>State<br/><input type="text" id="state"></td>
                           </tr>
                           <tr>
-                            <td>City<br/><input type="text" id="city" required></td>
+                            <td>City<br/><input type="text" id="city"></td>
                             <td>Street<br/><textarea id="street"></textarea></td>                                
                           </tr>  
                           <tr>
-                              <td>Exterior Number<br/><input type="number" id="houseExt" required></td>
+                              <td>Exterior Number<br/><input type="number" id="houseExt"></td>
                               <td>Interior Number<br/><input type="number" id="houseInt"></td>
                           </tr>    
                           <tr>
-                            <td>Suburb<br/><input type="text" id="suburb" required></td>
-                            <td>Postal Code<br/><input type="text" id="postalCode" required></td>
+                            <td>Suburb<br/><input type="text" id="suburb"></td>
+                            <td>Postal Code<br/><input type="text" id="postalCode"></td>
                           </tr>                                                 
                       </table>
                 </div>
                 <div class="actions">
                   <py-button id="create2" label="💾 Save" title="Create new contact">
 def on_click(evt):
-  create_contact()
+  setData()
                   </py-button>                  
                   <py-button id="update2" label="🔃Update" title="Update contact">
 print("Update")
@@ -202,22 +202,6 @@ print("Delete")
                   </div>
                 </div>            
             </div>
-
-            <!---data
-              *Logo
-              *Sensor más cercano: city_name
-              *Temp del sensor: temp
-              direccion del viento: wind_cdir_full
-              velocidad del viento: wind_spd
-              *Latitud y longitud del sensor: lat
-              *amanecer: sunrise
-              *atardecer: sunset
-              
-              
-              data weather
-              *tipo de clima: description
-              *Logo: icon
-            -->
             <p>Python Code Execution Status:</p>
             <textarea id="out"></textarea>
             <script type="text/javascript" src="./js/tabController.js"></script> 
