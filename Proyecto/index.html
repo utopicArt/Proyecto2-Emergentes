@@ -27,10 +27,10 @@
             <button class="tablink" onclick="openPage('Details', this, '#FB5139')" title="Show customer details" id="details">
                 Details
             </button>
-            <button class="tablink" onclick="openPage('Manage', this, '#311362')" title="Create, Update or Delete contact"  id="defaultOpen">
+            <button class="tablink" onclick="openPage('Manage', this, '#311362')" title="Create, Update or Delete contact">
                 Manage
             </button>
-            <button class="tablink" onclick="openPage('Weather', this, 'orange');" title="Show weather conditions in customer's location" class="weather">
+            <button class="tablink" onclick="openPage('Weather', this, 'orange');" title="Show weather conditions in customer's location" class="weather" id="defaultOpen">
                 Weather
             </button>
             <div id="Contacts" class="tabcontent">
@@ -172,33 +172,33 @@ print("Delete")
                 <h3>Weather</h3> 
                 <div class="grid-container">
                   <div class="grid-item item1">
-                    <img src="./images/icons/c03d.png" alt="Icono del tipo de clima">
+                    <img src="./images/icons/c03d.png" alt="Icono del tipo de clima" id="icon">
                   </div>
                   <div class="grid-item item2">
                     <span>Nearest Sensor</span>
-                    <p id="city_name">city_name</p>
+                    <p id="city_name">🏙️city_name</p>
                   </div>
                   <div class="grid-item item3">
                     <span>Condition</span>
                     <p id="description">Overcast clouds</p>
-                    <span>Latitud y longitud del sensor</span>
-                    <p>lat long</p>
+                    <span>SENSOR LATITUDE AND LONGITUDE</span>
+                    <p id="latLong">1, -1</p>
                   </div>
                   <div class="grid-item item4">
                     <span>Temperature</span>
-                    <p id="temp">18.7°C</p>
+                    <p id="temp">🌡️18.7°C</p>
                   </div>
                   <div class="grid-item item5">
                     <span>Sunrise</span>
-                    <p id="sunrise">12:52</p>
+                    <p id="sunrise">🌅12:52</p>
                     <span>Sunset</span>
-                    <p id="sunset">00:21</p>
+                    <p id="sunset">🌇00:21</p>
                   </div>
                   <div class="grid-item item6">
                     <span>Wind speed</span>
-                    <p id="wind_spd">1.1068416</p>
+                    <p id="wind_spd">💨1.1068416</p>
                     <span>Wind direction</span>
-                    <p id="wind_cdir_full">north-northwest</p>
+                    <p id="wind_cdir_full">🍃north-northwest</p>
                   </div>
                 </div>            
             </div>
